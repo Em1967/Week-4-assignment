@@ -20,6 +20,23 @@ else
     List<UInt64> Ids = [];
     List<string> Names = [];
     List<string> Descriptions = [];
+     // to populate the lists with data, read from the data file
+    try
+    {
+        StreamReader sr = new(file);
+        // first line contains column headers
+        sr.ReadLine();
+        while (!sr.EndOfStream)
+        {
+            string? line = sr.ReadLine();
+            Console.WriteLine(line);
+        }
+        sr.Close();
+    }
+    catch (Exception ex)
+    {
+        logger.Error(ex.Message);
+    }
     // create user menu
        string? choice;
     do
