@@ -20,6 +20,9 @@ else
     List<UInt64> Ids = [];
     List<string> Names = [];
     List<string?> Descriptions = [];
+    List<string> Species = [];
+    List<string> FirstAppearances = [];
+    List<int> YearsCreated = [];
      // to populate the lists with data, read from the data file
     try
     {
