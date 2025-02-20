@@ -123,15 +123,17 @@ else
         {
             // Display All Characters
             // loop thru Lists
-            for (int i = 0; i < Ids.Count; i++)
-            {
-                // display character details
-                Console.WriteLine($"Id: {Ids[i]}");
-                Console.WriteLine($"Name: {Names[i]}");
-                Console.WriteLine($"Description: {Descriptions[i]}");
-                Console.WriteLine();
-            }
-        }
+             for (int i = 0; i < Ids.Count; i++)
+    {
+        Console.WriteLine($"Id: {Ids[i]}");
+        Console.WriteLine($"Name: {Names[i]}");
+        Console.WriteLine($"Description: {Descriptions[i]}");
+        Console.WriteLine($"Species: {Species[i]}");
+        Console.WriteLine($"First Appearance: {FirstAppearances[i]}");
+        Console.WriteLine($"Year Created: {YearsCreated[i]}");
+        Console.WriteLine();
+    }
+}
     } while (choice == "1" || choice == "2");
 }
 
