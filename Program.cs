@@ -74,13 +74,12 @@ else
         {
             // Add Character
               Console.WriteLine("Enter new character name: ");
-            string? Name = Console.ReadLine();
-            if (!string.IsNullOrEmpty(Name)){
+            string? name = Console.ReadLine();
+            if (!string.IsNullOrEmpty(name)){
              // check for duplicate name
-                List<string> LowerCaseNames = Names.ConvertAll(n => n.ToLower());
-                if (LowerCaseNames.Contains(Name.ToLower()))
+                if (Names.ConvertAll(n => n.ToLower()).Contains(name.ToLower()))
                 {
-                    logger.Info($"Duplicate name {Name}");
+                    logger.Info($"Duplicate name {name}");
                 }
                 else
                 {
@@ -88,18 +87,33 @@ else
                     UInt64 Id = Ids.Max() + 1;
                    // input character description
                     Console.WriteLine("Enter description:");
-                    string? Description = Console.ReadLine();
-                   // Console.WriteLine($"{Id}, {Name}, {Description}");
-                    // create file from data
-                    StreamWriter sw = new(file, true);
-                    sw.WriteLine($"{Id},{Name},{Description}");
-                    sw.Close();
+            string? Description = Console.ReadLine();
+
+                    Console.WriteLine("Enter species: ");
+            string? species = Console.ReadLine();
+
+            Console.WriteLine("Enter first appearance: ");
+            string? firstAppearance = Console.ReadLine();
+
+            Console.WriteLine("Enter year created: ");
+            if (!int.TryParse(Console.ReadLine(), out int yearCreated))
+            {
+                logger.Error("Invalid year format.");
+                return;
+            }
                     // add new character details to Lists
                     Ids.Add(Id);
-                    Names.Add(Name);
-                    Descriptions.Add(Description);
+                    Names.Add(name);
+                    Descriptions.Add(Description ?? "N/A");
+                    Species.Add(species ?? "Unknown");
+                    FirstAppearances.Add(firstAppearance ?? "Unknown");
+                    YearsCreated.Add(yearCreated);
                     // log transaction
                     logger.Info($"Character id {Id} added");
+                    //Append to CSV file
+                     StreamWriter sw = new(file, true);
+            sw.WriteLine($"{Id},{name},{Description},{species},{firstAppearance},{yearCreated}");
+            sw.Close();
                 }
             } else {
                 logger.Error("You must enter a name");
