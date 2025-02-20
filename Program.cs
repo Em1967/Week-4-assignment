@@ -7,11 +7,12 @@ var logger = LogManager.Setup().LoadConfigurationFromFile(path).GetCurrentClassL
 
 logger.Info("Program started");
 
-string file = "Mario.csv";
+string file = "mario.csv";
 // make sure movie file exists
 if (!File.Exists(file))
 {
-    logger.Error("File does not exist: {File}", file);
+    logger.Error($"File does not exist: {file}");
+    Console.WriteLine($"Error: File {file} not found.");
 }
 else
 {
@@ -23,11 +24,13 @@ else
     List<string> Species = [];
     List<string> FirstAppearances = [];
     List<int> YearsCreated = [];
+    
      // to populate the lists with data, read from the data file
     try
     {
         StreamReader sr = new(file);
         // first line contains column headers
+        
         sr.ReadLine();
         while (!sr.EndOfStream)
         {
