@@ -7,7 +7,7 @@ var logger = LogManager.Setup().LoadConfigurationFromFile(path).GetCurrentClassL
 
 logger.Info("Program started");
 
-string file = "dk.csv";
+string file = "Mario.csv";
 // make sure movie file exists
 if (!File.Exists(file))
 {
