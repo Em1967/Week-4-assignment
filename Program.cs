@@ -33,18 +33,25 @@ else
         {
             string? line = sr.ReadLine();
             if (line is not null)
+             {
+            string[] characterDetails = line.Split(',');
+
+            if (characterDetails.Length >= 6) // Ensure all columns exist
             {
-                // character details are separated with comma(,)
-                string[] characterDetails = line.Split(',');
-                // 1st array element contains id
                 Ids.Add(UInt64.Parse(characterDetails[0]));
-                // 2nd array element contains character name
                 Names.Add(characterDetails[1]);
-                // 3rd array element contains character description
                 Descriptions.Add(characterDetails[2]);
+                Species.Add(characterDetails[3]);
+                FirstAppearances.Add(characterDetails[4]);
+                YearsCreated.Add(int.Parse(characterDetails[5]));
+            }
+            else
+            {
+                logger.Warn($"Skipping invalid line: {line}");
             }
         }
-        sr.Close();
+    }
+    sr.Close();
     }
     catch (Exception ex)
     {
